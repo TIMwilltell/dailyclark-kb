@@ -1,3 +1,9 @@
 .content {
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Roboto", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  .content {
+    font-family: "JetBrains Mono", monospace;
+  }
 }
