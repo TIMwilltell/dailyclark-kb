@@ -5,6 +5,13 @@ title: Second Brain
 module:
   imports:
     - path: github.com/imfing/hextra
+  private: "${PRIVATE_PATH}"
+
+params:
+  theme:
+    # light | dark | system
+    default: system
+    displayToggle: true
 
 menu:
   main:
