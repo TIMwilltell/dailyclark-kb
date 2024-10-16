@@ -7,12 +7,6 @@ module:
     - path: github.com/imfing/hextra
   private: "${PRIVATE_PATH}"
 
-params:
-  theme:
-    # light | dark | system
-    default: system
-    displayToggle: true
-
 menu:
   main:
     - name: Documentation
@@ -27,3 +21,17 @@ menu:
     - name: Search
       params:
         type: search
+
+params:
+  theme:
+    # light | dark | system
+    default: system
+    displayToggle: true
+  footer:
+    enable: true
+    displayCopyright: true
+    displayPoweredBy: false
+    width: normal
+  editURL:
+    enable: true
+    base: "file://$DOCS_PATH"

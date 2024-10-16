@@ -1,7 +1,7 @@
 services:
   hugo:
     image: hugomods/hugo:exts
-    command: hugo server --bind 0.0.0.0
+    command: hugo server --bind 0.0.0.0 --navigateToChanged
     volumes:
       - ".:/src"
       - "${DOCS_PATH}:/src/content/docs"
