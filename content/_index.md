@@ -13,4 +13,4 @@ date: 2024-10-03T10:13:01-05:00
 - [ ] Change color theme
 - [ ] Deploy locally
 - [ ] Authorization/User Management <!--using nginex probably-->
-- [ ] Button linking to edit source file
+- [X] Button linking to edit source file

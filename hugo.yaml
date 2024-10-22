@@ -1,4 +1,4 @@
-baseURL: https://example.com/
+baseURL: https://thedailyclark.com/
 languageCode: en-us
 title: Second Brain
 
@@ -34,4 +34,4 @@ params:
     width: normal
   editURL:
     enable: true
-    base: "file://$DOCS_PATH"
+    base: "https://fb.thedailyclark.local/files/"

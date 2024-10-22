@@ -9,4 +9,17 @@ services:
       - "${RECIPES_PATH}:/src/content/recipes"
     ports:
       - 1313:1313
+    labels:
+      - dev.orbstack.domains=${DEV_URL}
+    restart: unless-stopped
+  filebrowser:
+    image: filebrowser/filebrowser
+    container_name: filebrowser
+    ports:
+      - "8080:80"
+    labels:
+      - dev.orbstack.domains=${DEV_FB_URL}
+    volumes:
+      - "${DOCS_PATH}:/srv"
+      - "./static/branding:/branding"
     restart: unless-stopped
