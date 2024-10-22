@@ -1,6 +1,6 @@
 baseURL: https://thedailyclark.com/
 languageCode: en-us
-title: Second Brain
+title: Knowledge Base
 
 module:
   imports:

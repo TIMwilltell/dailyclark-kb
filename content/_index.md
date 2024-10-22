@@ -10,7 +10,8 @@ date: 2024-10-03T10:13:01-05:00
 
 ## Site Roadmap
 
-- [ ] Change color theme
+- [ ] 'Edit' button fix point for Filebrowser remove `docs` from path
+- [ ] Fix Light/Dark toggle & Color Theme
 - [ ] Deploy locally
 - [ ] Authorization/User Management <!--using nginex probably-->
 - [X] Button linking to edit source file
