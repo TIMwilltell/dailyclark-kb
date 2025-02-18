@@ -1,12 +1,23 @@
 services:
   hugo:
     image: hugomods/hugo:exts
-    command: hugo server --bind 0.0.0.0
+    environment:
+      - BASE=${BASE}
+      - DOCS_PATH=${DOCS_PATH}
+      - WORK_PATH=${WORK_PATH}
+      - RECIPES_PATH=${RECIPES_PATH}
+      - PRIVATE_PATH=${PRIVATE_PATH}
+      - DEV_URL=${DEV_URL}
+      - BASE_EDIT_URL=${BASE_EDIT_URL}
+      - DEV_FB_URL=${DEV_FB_URL}
+    command: hugo server --bind 0.0.0.0 --navigateToChanged -D
     volumes:
       - ".:/src"
-      - "${DOCS_PATH}:/src/content/docs"
-      - "${WORK_PATH}:/src/content/work"
-      - "${RECIPES_PATH}:/src/content/recipes"
+      - "${BASE}${DOCS_PATH}:/src/content/docs"
+      - "${BASE}${WORK_PATH}:/src/content/work"
+      - "${BASE}${RECIPES_PATH}:/src/content/recipes"
     ports:
       - 1313:1313
+    labels:
+      - dev.orbstack.domains=${DEV_URL}
     restart: unless-stopped

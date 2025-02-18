@@ -1,3 +1,6 @@
-public
+public/
+resources/
 .hugo_build.lock
 .env
+database/filebrowser.db
+.filebrowser.json
