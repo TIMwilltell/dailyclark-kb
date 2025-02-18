@@ -31,11 +31,23 @@
             {{- $editURL = . -}}
           {{- else -}}
             {{- with .File -}}
+            {{ $BASE := getenv "BASE" }}
+            {{ $DOCS_PATH := getenv "DOCS_PATH" }}
+            {{ $WORK_PATH := getenv "WORK_PATH"}}
               {{/* `.FileInfo.Meta.SourceRoot` is a Hugo internal field, e.g. `/path/to/repo/content/en/` */}}
               {{- $sourceDir := replace (strings.TrimPrefix .FileInfo.Meta.BaseDir .FileInfo.Meta.SourceRoot) "\\" "/" -}}
               {{- $sourceDir = strings.TrimPrefix "/content" $sourceDir -}}
               {{- $path := replace .Path "\\" "/" -}}
-              {{- $editURL = urls.JoinPath $editURL $sourceDir $path -}}
+              {{- $filePath := urls.JoinPath $BASE $sourceDir $path -}}
+              {{- $filePath = replace $filePath "/docs" $DOCS_PATH -}}
+              {{- $filePath = replace $filePath "/work" $WORK_PATH -}}
+              {{- $filePath = replace $filePath "//" "/" -}}
+              {{/* I need a way to append ${BASE}  */}}
+              {{/* $editURL = 'http://localhost:1314/files' */}}
+              {{/* $sourceDir = '/work/Drafts/Google%20Drive%20%E2%86%92%20Confluence%20Sync.md' */}}
+              {{/* should be = 'http://localhost:1314/files?file=${filePath}' */}}
+              {{- $query :=  printf "?file=%s" $filePath -}}
+              {{- $editURL = printf "%s%s" $editURL $query -}}
             {{- end -}}
           {{- end -}}
           <a class="hx-text-xs hx-font-medium hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-100 contrast-more:hx-text-gray-800 contrast-more:dark:hx-text-gray-50" href="{{ $editURL }}" target="_blank" rel="noreferer">{{ $editThisPage }}</a>

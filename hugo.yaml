@@ -1,22 +1,31 @@
-baseURL: https://thedailyclark.com/
+baseURL: https://example.com/
 languageCode: en-us
 title: Knowledge Base
 
 module:
   imports:
     - path: github.com/imfing/hextra
-  private: "${PRIVATE_PATH}"
+  mounts:
+    - excludeFiles:
+        - docs/pages/*
+        - docs/logseq/*
+      source: content
+      target: content
+    - source: archetypes
+      target: archetypes
+    - source: static
+      target: static
 
 menu:
   main:
-    - name: Documentation
+    - name: 2nd Brain
       pageRef: /docs
       weight: 1
     - name: Recipes
       pageRef: /recipes
       weight: 2
     - name: Work
-      pageRef: /work
+      pageRef: /Work
       weight: 3
     - name: Search
       params:
@@ -26,7 +35,7 @@ params:
   theme:
     # light | dark | system
     default: system
-    displayToggle: true
+    displayToggle: false
   footer:
     enable: true
     displayCopyright: true
@@ -34,4 +43,12 @@ params:
     width: normal
   editURL:
     enable: true
-    base: "https://fb.thedailyclark.local/files/"
+    base: http://localhost:1314/files
+
+security:
+  funcs:
+    getenv:
+      - BASE
+      - DOCS_PATH
+      - WORK_PATH
+      - RECIPES_PATH
