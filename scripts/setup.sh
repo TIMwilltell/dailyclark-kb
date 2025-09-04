@@ -15,7 +15,7 @@ echo "======================="
 # Check if .env file exists
 if [ ! -f "$ENV_FILE" ]; then
     echo "⚠️  No .env file found. Creating from template..."
-    
+
     if [ -f "$ENV_EXAMPLE" ]; then
         cp "$ENV_EXAMPLE" "$ENV_FILE"
         echo "✅ Created .env file from .env.example"
@@ -37,15 +37,6 @@ echo "✅ Found .env file"
 
 # Source the .env file
 source "$ENV_FILE"
-
-# Auto-set UID and GID if not defined
-if [ -z "$UID" ] || [ -z "$GID" ]; then
-    echo "🔧 Auto-setting UID and GID..."
-    echo "" >> "$ENV_FILE"
-    echo "# Auto-generated user permissions" >> "$ENV_FILE"
-    echo "UID=$(id -u)" >> "$ENV_FILE"
-    echo "GID=$(id -g)" >> "$ENV_FILE"
-fi
 
 # Validate required variables
 echo "🔍 Validating environment variables..."
@@ -74,7 +65,7 @@ echo "📁 Validating content paths..."
 
 PATHS_TO_CHECK=(
     "$BASE$DOCS_PATH:Documentation content"
-    "$BASE$WORK_PATH:Work content" 
+    "$BASE$WORK_PATH:Work content"
     "$BASE$RECIPES_PATH:Recipes content"
 )
 
@@ -83,7 +74,7 @@ MISSING_PATHS=()
 for path_info in "${PATHS_TO_CHECK[@]}"; do
     path="${path_info%:*}"
     description="${path_info#*:}"
-    
+
     if [ ! -d "$path" ]; then
         MISSING_PATHS+=("$path ($description)")
         echo "⚠️  Missing: $path ($description)"
@@ -114,9 +105,9 @@ echo "✅ Environment setup complete!"
 echo ""
 echo "📋 Configuration summary:"
 echo "   Base path: $BASE"
-echo "   Docs: $BASE$DOCS_PATH"
-echo "   Work: $BASE$WORK_PATH"
-echo "   Recipes: $BASE$RECIPES_PATH"
+echo "   Docs: $DOCS_PATH"
+echo "   Work: $WORK_PATH"
+echo "   Recipes: $RECIPES_PATH"
 
 if [ -n "$DEV_URL" ]; then
     echo "   Dev URL: $DEV_URL"

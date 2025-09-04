@@ -1,1 +1,15 @@
-{{ $page := .Site.GetPage (.Get 0) }} {{ .Page.RenderString $page.Content }}
+{{- $pagePath := .Get 0 -}}
+{{- if not $pagePath -}}
+  {{- errorf "embed shortcode requires a page path as the first parameter" -}}
+{{- end -}}
+
+{{- $page := .Site.GetPage $pagePath -}}
+{{- if not $page -}}
+  {{- errorf "embed shortcode: page %q not found" $pagePath -}}
+{{- end -}}
+
+{{- if eq $page.RelPermalink .Page.RelPermalink -}}
+  {{- errorf "embed shortcode: cannot embed page %q into itself (would cause infinite loop)" $pagePath -}}
+{{- end -}}
+
+{{- .Page.RenderString $page.Content -}}
