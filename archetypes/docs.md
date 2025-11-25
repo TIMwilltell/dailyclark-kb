@@ -1,5 +1,6 @@
 ---
 title: {{ .Title }}
 date: {{ .Date }}
-draft: true
+draft: false
 ---
+
